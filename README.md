@@ -19,31 +19,6 @@ AVFoundation: To capture and process the live video feed from the iPhone's camer
 🧠 Architectural Flow
 The application follows a streamlined, efficient data pipeline from camera input to UI output. Each frame from the camera is processed in real-time through a series of steps managed by the ViewController.
 
-graph TD
-    subgraph "Input Layer"
-        A[📱 iPhone Camera] --> B(AVCaptureSession);
-    end
-
-    subgraph "Processing Layer (ViewController)"
-        B --> C{captureOutput Delegate};
-        C --> D[Frame as CVPixelBuffer];
-        D --> E[VNImageRequestHandler];
-    end
-
-    subgraph "Analysis Layer"
-        E -- Feeds Pixel Buffer --> F(Core ML Model <br> MobileNetV2);
-        F -- Returns Predictions --> G[Process Classifications];
-    end
-
-    subgraph "Output Layer"
-        G -- Updates UI --> H[📊 Result UILabel];
-    end
-
-    style A fill:#cde4ff,stroke:#5a96ff,stroke-width:2px
-    style H fill:#cde4ff,stroke:#5a96ff,stroke-width:2px
-    style B fill:#f9f9f9,stroke:#333,stroke-width:2px
-    style C fill:#fff2cc,stroke:#d6b656,stroke-width:2px
-    style F fill:#d5e8d4,stroke:#82b366,stroke-width:2px
 
 🌟 Key Features
 Real-Time Classification: Identifies objects in the camera's view on a frame-by-frame basis.
